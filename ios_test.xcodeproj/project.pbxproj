@@ -16,15 +16,17 @@
 		8935104C2230DD4D000C8983 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8935104B2230DD4D000C8983 /* Constants.swift */; };
 		8935104E2230DDD6000C8983 /* CustomExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8935104D2230DDD6000C8983 /* CustomExtension.swift */; };
 		893510512230DFE6000C8983 /* BaseRestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893510502230DFE6000C8983 /* BaseRestAPI.swift */; };
-		893510532230E01E000C8983 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893510522230E01E000C8983 /* APIManager.swift */; };
 		893510562230E03E000C8983 /* UserContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893510552230E03E000C8983 /* UserContent.swift */; };
-		893510592230E0AC000C8983 /* UserContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893510582230E0AC000C8983 /* UserContentViewModel.swift */; };
 		8935105D2230E2CC000C8983 /* UserContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8935105C2230E2CC000C8983 /* UserContentListViewController.swift */; };
 		893510602230E2F5000C8983 /* UserContentListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8935105F2230E2F5000C8983 /* UserContentListTableViewCell.swift */; };
 		893510632230E3C6000C8983 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893510622230E3C6000C8983 /* BaseViewController.swift */; };
 		893510662230E522000C8983 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893510652230E522000C8983 /* AppManager.swift */; };
 		8935106E22310D36000C8983 /* ios_testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8935106D22310D36000C8983 /* ios_testTests.swift */; };
 		893510782231407F000C8983 /* APIResponseCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893510772231407F000C8983 /* APIResponseCheck.swift */; };
+		89C63827223CA67A00B57B69 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C63826223CA67A00B57B69 /* Observable.swift */; };
+		89C6382B223CAA8E00B57B69 /* UserContentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C6382A223CAA8E00B57B69 /* UserContentAPI.swift */; };
+		89C6382D223D256C00B57B69 /* UserContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C6382C223D256B00B57B69 /* UserContentViewModel.swift */; };
+		89C6382F223D25A600B57B69 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C6382E223D25A600B57B69 /* CellViewModel.swift */; };
 		F9AB183561CE5FF57CB198E9 /* Pods_ios_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA115DF5A5FDA5214625B159 /* Pods_ios_test.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,9 +55,7 @@
 		8935104B2230DD4D000C8983 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8935104D2230DDD6000C8983 /* CustomExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExtension.swift; sourceTree = "<group>"; };
 		893510502230DFE6000C8983 /* BaseRestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRestAPI.swift; sourceTree = "<group>"; };
-		893510522230E01E000C8983 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		893510552230E03E000C8983 /* UserContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContent.swift; sourceTree = "<group>"; };
-		893510582230E0AC000C8983 /* UserContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentViewModel.swift; sourceTree = "<group>"; };
 		8935105C2230E2CC000C8983 /* UserContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListViewController.swift; sourceTree = "<group>"; };
 		8935105F2230E2F5000C8983 /* UserContentListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListTableViewCell.swift; sourceTree = "<group>"; };
 		893510622230E3C6000C8983 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +64,10 @@
 		8935106D22310D36000C8983 /* ios_testTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_testTests.swift; sourceTree = "<group>"; };
 		8935106F22310D36000C8983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		893510772231407F000C8983 /* APIResponseCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseCheck.swift; sourceTree = "<group>"; };
+		89C63826223CA67A00B57B69 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		89C6382A223CAA8E00B57B69 /* UserContentAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentAPI.swift; sourceTree = "<group>"; };
+		89C6382C223D256B00B57B69 /* UserContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserContentViewModel.swift; sourceTree = "<group>"; };
+		89C6382E223D25A600B57B69 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		C1E526318CFEA9EE0822AFBD /* Pods-ios_test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_test.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios_test/Pods-ios_test.debug.xcconfig"; sourceTree = "<group>"; };
 		CA115DF5A5FDA5214625B159 /* Pods_ios_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -123,8 +127,9 @@
 		893510352230DBD2000C8983 /* ios_test */ = {
 			isa = PBXGroup;
 			children = (
-				893510642230E506000C8983 /* App Manager */,
 				8935104A2230DD17000C8983 /* Constants */,
+				893510642230E506000C8983 /* App Manager */,
+				89C63825223CA4C400B57B69 /* Base */,
 				893510572230E098000C8983 /* ViewModel */,
 				893510542230E02A000C8983 /* Model */,
 				8935104F2230DFC5000C8983 /* API Manager */,
@@ -152,7 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				893510502230DFE6000C8983 /* BaseRestAPI.swift */,
-				893510522230E01E000C8983 /* APIManager.swift */,
+				89C6382A223CAA8E00B57B69 /* UserContentAPI.swift */,
 			);
 			path = "API Manager";
 			sourceTree = "<group>";
@@ -168,7 +173,8 @@
 		893510572230E098000C8983 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				893510582230E0AC000C8983 /* UserContentViewModel.swift */,
+				89C6382C223D256B00B57B69 /* UserContentViewModel.swift */,
+				89C6382E223D25A600B57B69 /* CellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -222,6 +228,14 @@
 				8935106F22310D36000C8983 /* Info.plist */,
 			);
 			path = ios_testTests;
+			sourceTree = "<group>";
+		};
+		89C63825223CA4C400B57B69 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				89C63826223CA67A00B57B69 /* Observable.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		F07F34F2731E19B44CA0FE76 /* Frameworks */ = {
@@ -342,13 +356,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ios_test/Pods-ios_test-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,15 +414,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				893510562230E03E000C8983 /* UserContent.swift in Sources */,
-				893510532230E01E000C8983 /* APIManager.swift in Sources */,
 				8935104E2230DDD6000C8983 /* CustomExtension.swift in Sources */,
+				89C6382B223CAA8E00B57B69 /* UserContentAPI.swift in Sources */,
 				8935105D2230E2CC000C8983 /* UserContentListViewController.swift in Sources */,
+				89C63827223CA67A00B57B69 /* Observable.swift in Sources */,
 				893510602230E2F5000C8983 /* UserContentListTableViewCell.swift in Sources */,
 				893510632230E3C6000C8983 /* BaseViewController.swift in Sources */,
-				893510592230E0AC000C8983 /* UserContentViewModel.swift in Sources */,
 				893510662230E522000C8983 /* AppManager.swift in Sources */,
+				89C6382D223D256C00B57B69 /* UserContentViewModel.swift in Sources */,
 				893510372230DBD2000C8983 /* AppDelegate.swift in Sources */,
 				8935104C2230DD4D000C8983 /* Constants.swift in Sources */,
+				89C6382F223D25A600B57B69 /* CellViewModel.swift in Sources */,
 				893510512230DFE6000C8983 /* BaseRestAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -67,9 +67,9 @@ class BaseViewController: UIViewController {
     
     // MARK: - Show No Internet View
     
-    final func showInternetViewWithMsg(show:Bool,msg:String)
+    final func showInternetViewWithMsg(msg:String)
     {
-        if show
+        if msg.count > 0
         {
             navigationItem.rightBarButtonItem = nil
             lblNoInternetMsg.isHidden = false

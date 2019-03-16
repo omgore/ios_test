@@ -14,26 +14,47 @@ class UserContentListViewController: BaseViewController {
     
     private let refreshControl = UIRefreshControl()
     
-    var arrUserContentViewModel = [UserContentViewModel]()
+    var viewModel: UserContentViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
         loadInitialSettings()
+    }
+    
+    // MARK: - Bind View Model
+    
+    private func bindViewModel() {
+        viewModel?.showLoading.bindAndFire(listener: {
+            if $0 {
+                self.startActivityIndicator()
+            } else {
+                self.stopActivityIndicator()
+            }
+        })
+        
+        viewModel?.showError.bindAndFire(listener: {
+            self.showInternetViewWithMsg(msg: $0)
+        })
+        
+        viewModel?.contentList.bindAndFire(listener: {
+            self.title = self.viewModel?.navTitle
+            if $0.count > 0 {
+                self.tblVw.isHidden = false
+                self.tblVw.reloadData()
+            } else {
+                self.tblVw.isHidden = true
+            }
+        })
     }
     
     // MARK: - Load Initial Settings
     
-    private func loadInitialSettings()
-    {
+    private func loadInitialSettings() {
         loadTableView()        
         addRefreshControl()
+        viewModel?.fetchContent()
         
-        tblVw.isHidden = true
-        callAPI()
-        
+        bindViewModel()
     }
     
     // MARK: - Add Refresh control to table view
@@ -52,7 +73,7 @@ class UserContentListViewController: BaseViewController {
     
     // MARK: - Refresh control method
     
-    @objc func pullToRefresh(){
+    @objc func pullToRefresh() {
         refreshControl.endRefreshing()
         
         if isActivityIndicatorAnimating()
@@ -60,13 +81,12 @@ class UserContentListViewController: BaseViewController {
             return
         }
         
-        callAPI()
+        viewModel?.fetchContent()
     }
     
     // MARK: - Load Table view
     
-    private func loadTableView()
-    {
+    private func loadTableView(){
         tblVw = UITableView(frame: view.bounds, style: .plain)
         tblVw.delegate = self
         tblVw.dataSource = self
@@ -81,44 +101,6 @@ class UserContentListViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
     }
-    
-    // MARK: - API call from base view
-    
-    private func callAPI()
-    {
-        if !AppManager.sharedInstance.isInternetAvailable()
-        {
-            tblVw.isHidden = true
-            showInternetViewWithMsg(show: true, msg: "It seems the internet connection has been lost.\n Please retry when your connection returns.")
-            return
-        }
-        
-        startActivityIndicator()
-        
-        APIManager.sharedInstance.callJSONAPI(success: { (userContentWrapper) in
-            self.stopActivityIndicator()
-            self.title = userContentWrapper.title
-            
-            self.arrUserContentViewModel = userContentWrapper.rows?.map({return UserContentViewModel(objUserContent: $0)}) ?? []
-            
-            if self.arrUserContentViewModel.count > 0
-            {
-                self.tblVw.isHidden = false
-                self.showInternetViewWithMsg(show: false, msg: "")
-                self.tblVw.reloadData()
-            }
-            else
-            {
-                self.showInternetViewWithMsg(show: true, msg: "No data available.")
-            }
-            
-        }) { (error) in
-            self.stopActivityIndicator()
-            self.showInternetViewWithMsg(show: true, msg: error.localizedDescription)
-        }
-        
-    }
-    
 }
 
 // MARK: - TableView DataSource And Delegate
@@ -130,30 +112,22 @@ extension UserContentListViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if arrUserContentViewModel.count == 0
-        {
-            return 0
-        }
-        return arrUserContentViewModel.count
+        return viewModel?.contentList.value.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell:UserContentListTableViewCell? = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFIER, for: indexPath) as? UserContentListTableViewCell
-        if cell == nil
-        {
-            cell = UserContentListTableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: CELL_IDENTIFIER)
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFIER, for: indexPath) as? UserContentListTableViewCell else {
+            fatalError("Not able to load cell from nib")
         }
         
-        cell?.selectionStyle = .none
+        cell.selectionStyle = .none
         
-        if arrUserContentViewModel.count == 0
-        {
-            return cell!
+        if let cellViewModel = viewModel?.contentList.value[indexPath.row] {
+            cellViewModel.cell = cell
         }
-        
-        cell?.objUserContentViewModel = arrUserContentViewModel[indexPath.row]
-        
-        return cell!
+       
+        return cell
     }
 }
 
@@ -163,7 +137,7 @@ extension UserContentListViewController: UITableViewDataSource, UITableViewDeleg
 extension UserContentListViewController : BaseViewProtocol
 {
     func clickOnRetry() {
-        self.showInternetViewWithMsg(show: false, msg: "")
-        callAPI()
+        self.showInternetViewWithMsg(msg: "")
+        viewModel?.fetchContent()
     }
 }

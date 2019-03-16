@@ -35,15 +35,4 @@ class AppManager: NSObject {
         let needsConnection = flags.contains(.connectionRequired)
         return (isReachable && !needsConnection)
     }
-    
-    // MARK: - Check if string is empty
-    
-    func isEmptyString(string: String!) ->Bool{
-        
-        guard let str = string, !str.isEmpty else {
-            return true
-        }
-        return false
-    }
-    
 }

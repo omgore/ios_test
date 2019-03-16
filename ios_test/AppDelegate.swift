@@ -29,6 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         let cntUserContentList = UserContentListViewController()
+        let service = UserContentAPI.init()
+        let viewModel = UserContentViewModel.init(content: [], service: service, title: "")
+        cntUserContentList.viewModel = viewModel
+        
         let nav = UINavigationController(rootViewController: cntUserContentList)
         window?.rootViewController = nav
         

@@ -32,4 +32,3 @@ let CONSTANT_MARGIN_IN_CELL = 10
 
 let NO_TITLE = "No Title"
 let NO_SUBTITLE = "No Subtitle"
-let NO_IMGEREF = "http://kalaharilifestyle.com/wp-content/uploads/2014/04/placeholder4.png"

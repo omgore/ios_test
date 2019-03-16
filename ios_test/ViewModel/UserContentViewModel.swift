@@ -1,49 +1,47 @@
 //
-//  UserContentViewModel.swift
+//  ContentViewModel.swift
 //  ios_test
 //
-//  Created by Om Gore on 07/03/19.
+//  Created by Om Gore on 16/03/19.
 //  Copyright © 2019 Om Gore. All rights reserved.
 //
 
 import UIKit
+import Foundation
 
-struct UserContentViewModel {
-    let title:String
-    let description:String
-    let imageHref:String
+class UserContentViewModel: NSObject {
     
-    var isRowHeightZero = false
+    var showLoading : Observable<Bool>
+    var showError : Observable<String>
+    var contentList : Observable<[CellViewModel]>
+    var service : ContentAPI
+    var navTitle : String
     
-    init(objUserContent:UserContent) {
+    init(content : [UserContent], service : ContentAPI, title : String) {
+        self.showLoading = Observable.init(value: false)
+        self.showError = Observable.init(value: "")
+        self.contentList = Observable.init(value: content.map{ CellViewModel.init(userContent: $0) })
+        self.service = service
+        self.navTitle = ""
+    }
+    
+    public func fetchContent() {
         
-        if AppManager.sharedInstance.isEmptyString(string: objUserContent.title)
-        {
-            self.title = NO_TITLE
-        }
-        else
-        {
-            self.title = objUserContent.title!
-        }
-        
-        if AppManager.sharedInstance.isEmptyString(string: objUserContent.description)
-        {
-            self.description = NO_SUBTITLE
-        }
-        else
-        {
-            self.description = objUserContent.description!
+        guard AppManager.sharedInstance.isInternetAvailable() else {
+            self.showError.value = "Network not available"
+            return
         }
         
-        if AppManager.sharedInstance.isEmptyString(string: objUserContent.imageHref)
-        {
-            //for showing default placeholder
-            self.imageHref = NO_IMGEREF
-        }
-        else
-        {
-            self.imageHref = objUserContent.imageHref!
+        self.showLoading.value = true
+        
+        self.service.fetchContent(params: [ : ], success: { (contentList, title) in
+            self.navTitle = title
+            self.contentList.value = contentList.map{ CellViewModel.init(userContent: $0) }
+            self.showLoading.value = false
+        }) {
+            self.showError.value = $0.localizedDescription
         }
     }
     
 }
+

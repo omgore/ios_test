@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class UserContentListTableViewCell: UITableViewCell {
     let imgUserContent:UIImageView = {
@@ -77,27 +76,6 @@ class UserContentListTableViewCell: UITableViewCell {
             make.bottom.equalToSuperview().inset(CONSTANT_MARGIN_IN_CELL)
         }
         
-    }
-    
-    // MARK: - Setting data to UI
-    
-    var objUserContentViewModel:UserContentViewModel! {
-        didSet {
-            lblTitle.text = objUserContentViewModel.title
-            lblDescription.text = objUserContentViewModel.description
-            imgUserContent.kf.indicatorType = .activity
-            
-            imgUserContent.kf.setImage(with: URL(string: objUserContentViewModel.imageHref), placeholder: UIImage(named: "placeholder"), options: nil, progressBlock: nil, completionHandler: { (img, error, cache, url) in
-                if (error != nil)
-                {
-                    self.imgUserContent.image = UIImage(named: "placeholder4")
-                }
-                else
-                {
-                    self.imgUserContent.image = img
-                }
-            })
-        }
     }
 
 }
