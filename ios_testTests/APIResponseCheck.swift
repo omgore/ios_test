@@ -13,31 +13,37 @@ import Alamofire
 
 class APIResponseCheck: XCTestCase {
 
+    var sut: UserContentAPI?
+    
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        sut = UserContentAPI()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
+        super.tearDown()
     }
 
 
     func testAPIRequest() {
-        let e = expectation(description: "Alamofire")
         
-        Alamofire.request(JSON_URL)
-            .response { response in
-                
-                XCTAssertNotNil(response, "No response")
-                
-                XCTAssertEqual(response.response?.statusCode ?? 0, 200, "Status code not 200")
-                
-                XCTAssertNil(response.error, "Whoops, error \(response.error!.localizedDescription)")
-                
-                e.fulfill()
-        }
+        let sut = self.sut
         
-        waitForExpectations(timeout: 5.0, handler: nil)
+        let expect = XCTestExpectation(description: "callback")
+        
+        sut?.fetchContent(success: { (content, str) in
+            expect.fulfill()
+            
+            XCTAssertNotNil(content, "No response")
+            
+        }, failure: { (error) in
+            XCTAssertNil(error, "Whoops, error \(error.rawValue)")
+        })
+        
+        wait(for: [expect], timeout: 3.1)
     }
     
 }

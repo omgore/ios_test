@@ -129,7 +129,7 @@
 			children = (
 				8935104A2230DD17000C8983 /* Constants */,
 				893510642230E506000C8983 /* App Manager */,
-				89C63825223CA4C400B57B69 /* Base */,
+				89C63825223CA4C400B57B69 /* Observable */,
 				893510572230E098000C8983 /* ViewModel */,
 				893510542230E02A000C8983 /* Model */,
 				8935104F2230DFC5000C8983 /* API Manager */,
@@ -230,12 +230,12 @@
 			path = ios_testTests;
 			sourceTree = "<group>";
 		};
-		89C63825223CA4C400B57B69 /* Base */ = {
+		89C63825223CA4C400B57B69 /* Observable */ = {
 			isa = PBXGroup;
 			children = (
 				89C63826223CA67A00B57B69 /* Observable.swift */,
 			);
-			path = Base;
+			path = Observable;
 			sourceTree = "<group>";
 		};
 		F07F34F2731E19B44CA0FE76 /* Frameworks */ = {

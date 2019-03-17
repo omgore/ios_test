@@ -34,12 +34,12 @@ class UserContentViewModel: NSObject {
         
         self.showLoading.value = true
         
-        self.service.fetchContent(params: [ : ], success: { (contentList, title) in
+        self.service.fetchContent(success: { (contentList, title) in
             self.navTitle = title
             self.contentList.value = contentList.map{ CellViewModel.init(userContent: $0) }
             self.showLoading.value = false
         }) {
-            self.showError.value = $0.localizedDescription
+            self.showError.value = $0.rawValue
         }
     }
     

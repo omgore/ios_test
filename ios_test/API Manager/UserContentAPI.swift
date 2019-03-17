@@ -9,23 +9,17 @@
 import Foundation
 
 protocol ContentAPI {
-    func fetchContent(params:[String:String], success:@escaping ([UserContent], String)-> Void, failure : @escaping(Error) -> Void )
+    func fetchContent(success:@escaping ([UserContent], String)-> Void, failure : @escaping(UserContentError) -> Void )
 }
 
-enum UserContentError : Error {
-    case EmptyList
-    
-    var localizedDescription: String {
-        switch self {
-        case .EmptyList :
-            return "User list is empty"
-        }
-    }
+enum UserContentError: String, Error {
+    case EmptyList = "User list is empty"
+    case PermissionDenied = "Permission Denied"
 }
 
 class UserContentAPI : ContentAPI {
     
-    func fetchContent(params: [String : String], success: @escaping ([UserContent], String) -> Void, failure: @escaping (Error) -> Void) {
+    func fetchContent(success: @escaping ([UserContent], String) -> Void, failure: @escaping (UserContentError) -> Void) {
         BaseRestAPI.requestGETURL(JSON_URL, success: { (data) in
             
             do {
@@ -39,11 +33,11 @@ class UserContentAPI : ContentAPI {
                 success(rows, userWrapper.title!)
                 
             } catch {
-                failure(error)
+                failure(UserContentError(rawValue: error.localizedDescription)!)
             }
             
         }) { (error) in
-            failure(error)
+            failure(UserContentError(rawValue: error.localizedDescription)!)
         }
     }
 }

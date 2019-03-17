@@ -10,46 +10,103 @@ import XCTest
 @testable import ios_test
 
 class ios_testTests: XCTestCase {
+    
+    var sut:UserContentViewModel!
+    var mockAPIService:MockApiService!
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        mockAPIService = MockApiService()
+        sut = UserContentViewModel(content: [], service: mockAPIService, title: "Title")
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
+        mockAPIService = nil
+        super.tearDown()
     }
+    
+    func test_FetchUserContentList() {
+        sut.fetchContent()
+        
+        XCTAssert(mockAPIService.contentList.count > 0)
+    }
+    
+    func test_FetchUserContentListFail() {
+        let error = UserContentError.PermissionDenied
+        
+        sut.fetchContent()
+        
+        mockAPIService.fetchFail(error: error)
+        
+        XCTAssertEqual(sut.showError.value, error.rawValue)
+    }
+    
+    func test_LoadingWhenFetching() {
+        var showLoadingStatus = false
+        let expect = XCTestExpectation(description: "Show Loading status updated")
+        sut.showLoading.bind {
+            showLoadingStatus = $0
+            expect.fulfill()
+        }
+        
+        sut.fetchContent()
+        
+        XCTAssertTrue( showLoadingStatus )
+        
+        mockAPIService!.fetchSuccess()
+        
+        XCTAssertFalse( showLoadingStatus )
+        
+        wait(for: [expect], timeout: 1.0)
+    }
+    
+    func test_getCellViewModel() {
+        let userContentList = MockApiService.makeMockContentList()
+        mockAPIService.contentList = userContentList
 
-    func testUserContentViewModel(){
-        let objUserContent = UserContent(title: "Public", description: nil, imageHref: "imageName")
-        let objUserContentViewModel = UserContentViewModel(objUserContent: objUserContent)
+        sut.fetchContent()
+        mockAPIService.fetchSuccess()
         
-        if AppManager.sharedInstance.isEmptyString(string: objUserContent.title)
-        {
-            XCTAssertEqual(NO_TITLE, objUserContentViewModel.title)
-        }
-        else
-        {
-            XCTAssertEqual(objUserContent.title, objUserContentViewModel.title)
-        }
+        let indexPath = IndexPath(row: 1, section: 0)
+        let testObjUserContent = userContentList[indexPath.row]
         
-        if AppManager.sharedInstance.isEmptyString(string: objUserContent.description)
-        {
-            XCTAssertEqual(NO_SUBTITLE, objUserContentViewModel.description)
-        }
-        else
-        {
-            XCTAssertEqual(objUserContent.description, objUserContentViewModel.description)
-        }
+        let objUserContent = sut.contentList.value[indexPath.row]
         
-        if AppManager.sharedInstance.isEmptyString(string: objUserContent.imageHref)
-        {
-            XCTAssertEqual(NO_IMGEREF, objUserContentViewModel.imageHref)
-        }
-        else
-        {
-            XCTAssertEqual(objUserContent.imageHref, objUserContentViewModel.imageHref)
-        }
+        XCTAssertEqual(objUserContent.userContent.title, testObjUserContent.title)
         
+    }
+}
+
+
+class MockApiService: ContentAPI {
+    
+    var contentList: [UserContent] = [UserContent]()
+    var successClosure: (([UserContent], String) -> Void)!
+    var failureClosure: ((UserContentError) -> Void)!
+
+    
+    func fetchContent(success: @escaping ([UserContent], String) -> Void, failure: @escaping (UserContentError) -> Void) {
+        contentList = MockApiService.makeMockContentList()
+        successClosure = success
+        failureClosure = failure
+    }
+    
+    func fetchSuccess() {
+        successClosure(contentList, "Title")
+    }
+    
+    func fetchFail(error: UserContentError) {
+        failureClosure(error)
+    }
+    
+    static func makeMockContentList() -> [UserContent]{
+        return [
+            UserContent(title: "Canada", description: "Canada is very beautiful place", imageHref: ""),
+            UserContent(title: "India", description: "Inida is developing country", imageHref: ""),
+            UserContent(title: "No title", description: "No subtitle", imageHref: "")]
     }
     
 }
