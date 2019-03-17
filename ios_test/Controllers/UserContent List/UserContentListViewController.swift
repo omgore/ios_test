@@ -93,7 +93,7 @@ class UserContentListViewController: BaseViewController {
         tblVw.rowHeight = UITableView.automaticDimension
         tblVw.estimatedRowHeight = 100
         
-        tblVw.register(UserContentListTableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFIER)
+        tblVw.register(UserContentListTableViewCell.self, forCellReuseIdentifier: Constants.CELL_IDENTIFIER)
         
         view.addSubview(tblVw)
         
@@ -117,7 +117,7 @@ extension UserContentListViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFIER, for: indexPath) as? UserContentListTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CELL_IDENTIFIER, for: indexPath) as? UserContentListTableViewCell else {
             fatalError("Not able to load cell from nib")
         }
         

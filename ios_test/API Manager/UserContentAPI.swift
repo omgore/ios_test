@@ -20,7 +20,7 @@ enum UserContentError: String, Error {
 class UserContentAPI : ContentAPI {
     
     func fetchContent(success: @escaping ([UserContent], String) -> Void, failure: @escaping (UserContentError) -> Void) {
-        BaseRestAPI.requestGETURL(JSON_URL, success: { (data) in
+        BaseRestAPI.requestGETURL(Constants.JSON_URL, success: { (data) in
             
             do {
                 let userWrapper = try JSONDecoder().decode(UserContentWrapper.self, from: data)

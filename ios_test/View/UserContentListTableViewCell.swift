@@ -57,23 +57,23 @@ class UserContentListTableViewCell: UITableViewCell {
     
     private func setConstraints(){
         imgUserContent.snp.makeConstraints { (make) in
-            make.leading.equalToSuperview().inset(CONSTANT_MARGIN_IN_CELL)
-            make.top.equalToSuperview().inset(CONSTANT_MARGIN_IN_CELL)
+            make.leading.equalToSuperview().inset(Constants.CONSTANT_MARGIN_IN_CELL)
+            make.top.equalToSuperview().inset(Constants.CONSTANT_MARGIN_IN_CELL)
             make.size.equalTo(CGSize(width: 80, height: 80))
-            make.bottom.lessThanOrEqualToSuperview().inset(CONSTANT_MARGIN_IN_CELL)
+            make.bottom.lessThanOrEqualToSuperview().inset(Constants.CONSTANT_MARGIN_IN_CELL)
         }
         
         lblTitle.snp.makeConstraints { (make) in
-            make.leading.equalTo(imgUserContent.snp.trailing).offset(CONSTANT_MARGIN_IN_CELL)
-            make.top.equalToSuperview().inset(CONSTANT_MARGIN_IN_CELL)
-            make.trailing.equalToSuperview().inset(CONSTANT_MARGIN_IN_CELL)
+            make.leading.equalTo(imgUserContent.snp.trailing).offset(Constants.CONSTANT_MARGIN_IN_CELL)
+            make.top.equalToSuperview().inset(Constants.CONSTANT_MARGIN_IN_CELL)
+            make.trailing.equalToSuperview().inset(Constants.CONSTANT_MARGIN_IN_CELL)
         }
         
         lblDescription.snp.makeConstraints { (make) in
-            make.leading.equalTo(imgUserContent.snp.trailing).offset(CONSTANT_MARGIN_IN_CELL)
+            make.leading.equalTo(imgUserContent.snp.trailing).offset(Constants.CONSTANT_MARGIN_IN_CELL)
             make.top.equalTo(lblTitle.snp.bottom)
-            make.trailing.equalToSuperview().inset(CONSTANT_MARGIN_IN_CELL)
-            make.bottom.equalToSuperview().inset(CONSTANT_MARGIN_IN_CELL)
+            make.trailing.equalToSuperview().inset(Constants.CONSTANT_MARGIN_IN_CELL)
+            make.bottom.equalToSuperview().inset(Constants.CONSTANT_MARGIN_IN_CELL)
         }
         
     }

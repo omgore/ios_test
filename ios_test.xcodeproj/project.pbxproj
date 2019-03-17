@@ -127,6 +127,7 @@
 		893510352230DBD2000C8983 /* ios_test */ = {
 			isa = PBXGroup;
 			children = (
+				89C63830223E4E2200B57B69 /* Custom Extension */,
 				8935104A2230DD17000C8983 /* Constants */,
 				893510642230E506000C8983 /* App Manager */,
 				89C63825223CA4C400B57B69 /* Observable */,
@@ -148,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				8935104B2230DD4D000C8983 /* Constants.swift */,
-				8935104D2230DDD6000C8983 /* CustomExtension.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -236,6 +236,14 @@
 				89C63826223CA67A00B57B69 /* Observable.swift */,
 			);
 			path = Observable;
+			sourceTree = "<group>";
+		};
+		89C63830223E4E2200B57B69 /* Custom Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8935104D2230DDD6000C8983 /* CustomExtension.swift */,
+			);
+			path = "Custom Extension";
 			sourceTree = "<group>";
 		};
 		F07F34F2731E19B44CA0FE76 /* Frameworks */ = {
@@ -627,7 +635,9 @@
 			baseConfigurationReference = 04A5B38761860BF0004490A8 /* Pods-ios_testTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ios_testTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -636,6 +646,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "om.ios-testTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios_test.app/ios_test";
@@ -647,7 +658,9 @@
 			baseConfigurationReference = 0F347215D5F95B449B90452F /* Pods-ios_testTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ios_testTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -656,6 +669,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "om.ios-testTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios_test.app/ios_test";

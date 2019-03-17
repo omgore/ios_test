@@ -51,12 +51,12 @@ class BaseViewController: UIViewController {
         
         lblNoInternetMsg.snp.makeConstraints { (make) in
             make.centerY.equalTo(view.snp.centerY)
-            make.leading.equalToSuperview().offset(CONSTANT_MARGIN_IN_CELL)
-            make.trailing.equalToSuperview().inset(CONSTANT_MARGIN_IN_CELL)
+            make.leading.equalToSuperview().offset(Constants.CONSTANT_MARGIN_IN_CELL)
+            make.trailing.equalToSuperview().inset(Constants.CONSTANT_MARGIN_IN_CELL)
         }
         
         btnRetry.snp.makeConstraints { (make) in
-            make.top.equalTo(lblNoInternetMsg.snp.bottom).offset(CONSTANT_MARGIN_IN_CELL)
+            make.top.equalTo(lblNoInternetMsg.snp.bottom).offset(Constants.CONSTANT_MARGIN_IN_CELL)
             make.centerX.equalTo(view.snp.centerX)
             make.size.equalTo(CGSize(width: 80, height: 30))
         }

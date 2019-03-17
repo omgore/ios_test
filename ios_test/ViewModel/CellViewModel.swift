@@ -29,8 +29,8 @@ class CellViewModel {
     
     var cell : UserContentListTableViewCell? {
         didSet {
-            self.cell?.lblTitle.text = self.userContent.title ?? NO_TITLE
-            self.cell?.lblDescription.text = self.userContent.description ?? NO_SUBTITLE
+            self.cell?.lblTitle.text = self.userContent.title ?? Constants.NO_TITLE
+            self.cell?.lblDescription.text = self.userContent.description ?? Constants.NO_SUBTITLE
             
             if let image = self.image.value {
                 self.cell?.imgUserContent.image = image
