@@ -86,7 +86,7 @@ class UserContentListViewController: BaseViewController {
     
     // MARK: - Load Table view
     
-    private func loadTableView(){
+    private func loadTableView() {
         tblVw = UITableView(frame: view.bounds, style: .plain)
         tblVw.delegate = self
         tblVw.dataSource = self
@@ -105,8 +105,7 @@ class UserContentListViewController: BaseViewController {
 
 // MARK: - TableView DataSource And Delegate
 
-extension UserContentListViewController: UITableViewDataSource, UITableViewDelegate
-{
+extension UserContentListViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -134,8 +133,7 @@ extension UserContentListViewController: UITableViewDataSource, UITableViewDeleg
 
 // MARK: - Base view controller protocol
 
-extension UserContentListViewController : BaseViewProtocol
-{
+extension UserContentListViewController: BaseViewProtocol {
     func clickOnRetry() {
         self.showInternetViewWithMsg(msg: "")
         viewModel?.fetchContent()

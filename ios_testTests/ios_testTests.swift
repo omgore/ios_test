@@ -102,7 +102,7 @@ class MockApiService: ContentAPI {
         failureClosure(error)
     }
     
-    static func makeMockContentList() -> [UserContent]{
+    static func makeMockContentList() -> [UserContent] {
         return [
             UserContent(title: "Canada", description: "Canada is very beautiful place", imageHref: ""),
             UserContent(title: "India", description: "Inida is developing country", imageHref: ""),

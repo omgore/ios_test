@@ -17,15 +17,13 @@ class BaseRestAPI: NSObject {
         
         Alamofire.request(strURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseString { (response) in
             
-            switch response.result
-            {
+            switch response.result {
             case .success(_):
                 let responseData = response.value?.data(using: .utf8)
                 success(responseData!)
             case .failure((let error)):
                 failure(error)
             }
-            
         }
     }
 }

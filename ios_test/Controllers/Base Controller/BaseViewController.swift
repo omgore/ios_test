@@ -44,8 +44,7 @@ class BaseViewController: UIViewController {
     
     // MARK: - Set Up No internet view
     
-    private func setNoInternetView()
-    {
+    private func setNoInternetView() {
         view.addSubview(lblNoInternetMsg)
         view.addSubview(btnRetry)
         
@@ -67,17 +66,13 @@ class BaseViewController: UIViewController {
     
     // MARK: - Show No Internet View
     
-    final func showInternetViewWithMsg(msg:String)
-    {
-        if msg.count > 0
-        {
+    final func showInternetViewWithMsg(msg:String) {
+        if msg.count > 0 {
             navigationItem.rightBarButtonItem = nil
             lblNoInternetMsg.isHidden = false
             btnRetry.isHidden = false
             lblNoInternetMsg.text = msg
-        }
-        else
-        {
+        } else {
             lblNoInternetMsg.isHidden = true
             btnRetry.isHidden = true
             lblNoInternetMsg.text = ""

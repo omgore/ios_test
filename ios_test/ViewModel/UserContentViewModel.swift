@@ -40,6 +40,7 @@ class UserContentViewModel: NSObject {
             self.showLoading.value = false
         }) {
             self.showError.value = $0.rawValue
+            self.showLoading.value = false
         }
     }
     

@@ -24,8 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Load User Content List Controller
     
-    func loadUserContentListController()
-    {
+    func loadUserContentListController() {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         let cntUserContentList = UserContentListViewController()

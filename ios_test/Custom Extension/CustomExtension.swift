@@ -44,8 +44,7 @@ extension UIViewController {
         }
     }
     
-    func isActivityIndicatorAnimating() -> Bool
-    {
+    func isActivityIndicatorAnimating() -> Bool {
         if let activityIndicator = view.subviews.filter(
             { $0.tag == activityIndicatorTag}).first as? UIActivityIndicatorView {
             return activityIndicator.isAnimating

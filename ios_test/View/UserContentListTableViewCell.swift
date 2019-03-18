@@ -45,7 +45,7 @@ class UserContentListTableViewCell: UITableViewCell {
     
     // MARK: - Set up cell
     
-    private func setUpCell(){
+    private func setUpCell() {
         contentView.addSubview(imgUserContent)
         contentView.addSubview(lblTitle)
         contentView.addSubview(lblDescription)
@@ -55,7 +55,7 @@ class UserContentListTableViewCell: UITableViewCell {
     
     // MARK: - Set Constraints
     
-    private func setConstraints(){
+    private func setConstraints() {
         imgUserContent.snp.makeConstraints { (make) in
             make.leading.equalToSuperview().inset(Constants.CONSTANT_MARGIN_IN_CELL)
             make.top.equalToSuperview().inset(Constants.CONSTANT_MARGIN_IN_CELL)
