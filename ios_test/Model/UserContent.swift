@@ -10,12 +10,11 @@ import UIKit
 
 struct UserContent: Codable {
     
-    let title:String?
-    let description:String?
-    let imageHref:String?
+    let title: String?
+    let description: String?
+    let imageHref: String?
     
-    enum CodingKeys:String,CodingKey
-    {
+    enum CodingKeys: String, CodingKey {
         case title
         case description
         case imageHref
@@ -24,11 +23,10 @@ struct UserContent: Codable {
 }
 
 struct UserContentWrapper: Codable {
-    let title:String?
-    let rows:[UserContent]?
+    let title: String?
+    let rows: [UserContent]?
     
-    enum CodingKeys:String,CodingKey
-    {
+    enum CodingKeys: String, CodingKey {
         case title
         case rows
     }

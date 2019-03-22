@@ -9,24 +9,24 @@
 import Foundation
 
 protocol ContentAPI {
-    func fetchContent(success:@escaping ([UserContent], String)-> Void, failure : @escaping(UserContentError) -> Void )
+    func fetchContent(success:@escaping ([UserContent], String) -> Void, failure : @escaping(UserContentError) -> Void )
 }
 
 enum UserContentError: String, Error {
-    case EmptyList = "User list is empty"
-    case PermissionDenied = "Permission Denied"
+    case emptyList = "User list is empty"
+    case permissionDenied = "Permission Denied"
 }
 
-class UserContentAPI : ContentAPI {
+class UserContentAPI: ContentAPI {
     
     func fetchContent(success: @escaping ([UserContent], String) -> Void, failure: @escaping (UserContentError) -> Void) {
-        BaseRestAPI.requestGETURL(Constants.JSON_URL, success: { (data) in
+        BaseRestAPI.requestGETURL(Constants.jsonUrl, success: { (data) in
             
             do {
                 let userWrapper = try JSONDecoder().decode(UserContentWrapper.self, from: data)
                 
                 guard let rows = userWrapper.rows else {
-                    failure(UserContentError.EmptyList)
+                    failure(UserContentError.emptyList)
                     return
                 }
                 

@@ -36,8 +36,7 @@ extension UIViewController {
     
     func stopActivityIndicator() {
         DispatchQueue.main.async {
-            if let activityIndicator = self.view.subviews.filter(
-                { $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
+            if let activityIndicator = self.view.subviews.filter({ $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
             }
@@ -45,11 +44,9 @@ extension UIViewController {
     }
     
     func isActivityIndicatorAnimating() -> Bool {
-        if let activityIndicator = view.subviews.filter(
-            { $0.tag == activityIndicatorTag}).first as? UIActivityIndicatorView {
+        if let activityIndicator = view.subviews.filter({ $0.tag == activityIndicatorTag}).first as? UIActivityIndicatorView {
             return activityIndicator.isAnimating
         }
         return false
     }
 }
-

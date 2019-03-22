@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2BA8CD7BEE543CBC93B14AA5 /* Pods_ios_testTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65CA42FF45E3579F19C20CE7 /* Pods_ios_testTests.framework */; };
+		5272C9B62244DFA800B87C3E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 5272C9B52244DFA800B87C3E /* .swiftlint.yml */; };
 		893510372230DBD2000C8983 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893510362230DBD2000C8983 /* AppDelegate.swift */; };
 		8935103C2230DBD2000C8983 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8935103A2230DBD2000C8983 /* Main.storyboard */; };
 		8935103E2230DBD5000C8983 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8935103D2230DBD5000C8983 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		04A5B38761860BF0004490A8 /* Pods-ios_testTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_testTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios_testTests/Pods-ios_testTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0F347215D5F95B449B90452F /* Pods-ios_testTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_testTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios_testTests/Pods-ios_testTests.release.xcconfig"; sourceTree = "<group>"; };
 		3D2CA49BE0BE9296E0948BC3 /* Pods-ios_test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_test.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios_test/Pods-ios_test.release.xcconfig"; sourceTree = "<group>"; };
+		5272C9B52244DFA800B87C3E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		65CA42FF45E3579F19C20CE7 /* Pods_ios_testTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_testTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		893510332230DBD2000C8983 /* ios_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		893510362230DBD2000C8983 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		8935102A2230DBD2000C8983 = {
 			isa = PBXGroup;
 			children = (
+				5272C9B52244DFA800B87C3E /* .swiftlint.yml */,
 				893510482230DC8D000C8983 /* PodFile */,
 				893510352230DBD2000C8983 /* ios_test */,
 				8935106C22310D36000C8983 /* ios_testTests */,
@@ -267,6 +270,7 @@
 				893510302230DBD2000C8983 /* Frameworks */,
 				893510312230DBD2000C8983 /* Resources */,
 				97DD9688471612DEA28A1B18 /* [CP] Embed Pods Frameworks */,
+				5272C9B72244DFC200B87C3E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -339,6 +343,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5272C9B62244DFA800B87C3E /* .swiftlint.yml in Resources */,
 				893510412230DBD5000C8983 /* LaunchScreen.storyboard in Resources */,
 				8935103E2230DBD5000C8983 /* Assets.xcassets in Resources */,
 				893510492230DC8D000C8983 /* PodFile in Resources */,
@@ -356,6 +361,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5272C9B72244DFC200B87C3E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		97DD9688471612DEA28A1B18 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

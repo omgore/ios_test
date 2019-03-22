@@ -12,14 +12,14 @@ import AlamofireImage
 
 class CellViewModel {
     
-    var userContent : UserContent
-    static var placeholder : UIImage?
-    var image : Observable<UIImage?>
+    var userContent: UserContent
+    static var placeholder: UIImage?
+    var image: Observable<UIImage?>
     
-    init(userContent : UserContent) {
+    init(userContent: UserContent) {
         self.userContent = userContent
         
-        if( CellViewModel.placeholder == nil) {
+        if CellViewModel.placeholder == nil {
             CellViewModel.placeholder = UIImage.init(named: "placeholder4")
         }
         
@@ -27,10 +27,10 @@ class CellViewModel {
         self.bindCell()
     }
     
-    var cell : UserContentListTableViewCell? {
+    var cell: UserContentListTableViewCell? {
         didSet {
-            self.cell?.lblTitle.text = self.userContent.title ?? Constants.NO_TITLE
-            self.cell?.lblDescription.text = self.userContent.description ?? Constants.NO_SUBTITLE
+            self.cell?.lblTitle.text = self.userContent.title ?? Constants.noTitle
+            self.cell?.lblDescription.text = self.userContent.description ?? Constants.noSubtitle
             
             if let image = self.image.value {
                 self.cell?.imgUserContent.image = image

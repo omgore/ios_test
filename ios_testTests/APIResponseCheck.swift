@@ -27,14 +27,13 @@ class APIResponseCheck: XCTestCase {
         super.tearDown()
     }
 
-
     func testAPIRequest() {
         
         let sut = self.sut
         
         let expect = XCTestExpectation(description: "callback")
         
-        sut?.fetchContent(success: { (content, str) in
+        sut?.fetchContent(success: { (content, _) in
             expect.fulfill()
             
             XCTAssertNotNil(content, "No response")

@@ -11,8 +11,8 @@ import XCTest
 
 class ios_testTests: XCTestCase {
     
-    var sut:UserContentViewModel!
-    var mockAPIService:MockApiService!
+    var sut: UserContentViewModel!
+    var mockAPIService: MockApiService!
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -35,7 +35,7 @@ class ios_testTests: XCTestCase {
     }
     
     func test_FetchUserContentListFail() {
-        let error = UserContentError.PermissionDenied
+        let error = UserContentError.permissionDenied
         
         sut.fetchContent()
         
@@ -80,13 +80,11 @@ class ios_testTests: XCTestCase {
     }
 }
 
-
 class MockApiService: ContentAPI {
     
     var contentList: [UserContent] = [UserContent]()
     var successClosure: (([UserContent], String) -> Void)!
     var failureClosure: ((UserContentError) -> Void)!
-
     
     func fetchContent(success: @escaping ([UserContent], String) -> Void, failure: @escaping (UserContentError) -> Void) {
         contentList = MockApiService.makeMockContentList()

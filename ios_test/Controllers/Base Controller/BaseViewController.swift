@@ -9,13 +9,13 @@
 import UIKit
 import SnapKit
 
-@objc protocol BaseViewProtocol:class {
+@objc protocol BaseViewProtocol: class {
     @objc func clickOnRetry()
 }
 
 class BaseViewController: UIViewController {
 
-    let lblNoInternetMsg:UILabel = {
+    let lblNoInternetMsg: UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont.systemFont(ofSize: 17)
         lbl.textColor = UIColor.red
@@ -24,7 +24,7 @@ class BaseViewController: UIViewController {
         return lbl
     }()
     
-    let btnRetry:UIButton = {
+    let btnRetry: UIButton = {
         let btn = UIButton()
         btn.setTitle("Retry", for: .normal)
         btn.backgroundColor = UIColor.lightGray
@@ -47,15 +47,16 @@ class BaseViewController: UIViewController {
     private func setNoInternetView() {
         view.addSubview(lblNoInternetMsg)
         view.addSubview(btnRetry)
+        let margin = Constants.constantMarginInCell
         
         lblNoInternetMsg.snp.makeConstraints { (make) in
             make.centerY.equalTo(view.snp.centerY)
-            make.leading.equalToSuperview().offset(Constants.CONSTANT_MARGIN_IN_CELL)
-            make.trailing.equalToSuperview().inset(Constants.CONSTANT_MARGIN_IN_CELL)
+            make.leading.equalToSuperview().offset(margin)
+            make.trailing.equalToSuperview().inset(margin)
         }
         
         btnRetry.snp.makeConstraints { (make) in
-            make.top.equalTo(lblNoInternetMsg.snp.bottom).offset(Constants.CONSTANT_MARGIN_IN_CELL)
+            make.top.equalTo(lblNoInternetMsg.snp.bottom).offset(margin)
             make.centerX.equalTo(view.snp.centerX)
             make.size.equalTo(CGSize(width: 80, height: 30))
         }
@@ -66,7 +67,7 @@ class BaseViewController: UIViewController {
     
     // MARK: - Show No Internet View
     
-    final func showInternetViewWithMsg(msg:String) {
+    final func showInternetViewWithMsg(msg: String) {
         if msg.count > 0 {
             navigationItem.rightBarButtonItem = nil
             lblNoInternetMsg.isHidden = false
