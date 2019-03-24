@@ -9,15 +9,15 @@
 import XCTest
 @testable import ios_test
 
-class ios_testTests: XCTestCase {
-    
+class IostestTests: XCTestCase {
+
     var sut: UserContentViewModel!
-    var mockAPIService: MockApiService!
+    var mockAPIService: UserContentAPI!
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
-        mockAPIService = MockApiService()
+        mockAPIService = UserContentAPI()
         sut = UserContentViewModel(content: [], service: mockAPIService, title: "Title")
     }
 
@@ -27,23 +27,25 @@ class ios_testTests: XCTestCase {
         mockAPIService = nil
         super.tearDown()
     }
-    
+
     func test_FetchUserContentList() {
         sut.fetchContent()
-        
-        XCTAssert(mockAPIService.contentList.count > 0)
+
+        let expect = self.expectation(description: "Expected to fecth content list")
+
+        sut.contentList.bind { (_) in
+            XCTAssert(!self.sut.contentList.value.isEmpty)
+            expect.fulfill()
+        }
+
+        sut.showError.bind { (value) in
+            XCTAssertNil(value, "Error is \(value)")
+            expect.fulfill()
+        }
+
+        wait(for: [expect], timeout: 3.0)
     }
-    
-    func test_FetchUserContentListFail() {
-        let error = UserContentError.permissionDenied
-        
-        sut.fetchContent()
-        
-        mockAPIService.fetchFail(error: error)
-        
-        XCTAssertEqual(sut.showError.value, error.rawValue)
-    }
-    
+
     func test_LoadingWhenFetching() {
         var showLoadingStatus = false
         let expect = XCTestExpectation(description: "Show Loading status updated")
@@ -51,60 +53,40 @@ class ios_testTests: XCTestCase {
             showLoadingStatus = $0
             expect.fulfill()
         }
-        
-        sut.fetchContent()
-        
-        XCTAssertTrue( showLoadingStatus )
-        
-        mockAPIService!.fetchSuccess()
-        
-        XCTAssertFalse( showLoadingStatus )
-        
-        wait(for: [expect], timeout: 1.0)
-    }
-    
-    func test_getCellViewModel() {
-        let userContentList = MockApiService.makeMockContentList()
-        mockAPIService.contentList = userContentList
 
         sut.fetchContent()
-        mockAPIService.fetchSuccess()
-        
+
+        XCTAssertTrue( showLoadingStatus )
+
+        wait(for: [expect], timeout: 3.0)
+
+    }
+
+    func test_getCellViewModel() {
+        var userContentList: [UserContent] = []
+        var responseTitle = ""
+
+        let expect = XCTestExpectation(description: "Getting Response")
+
+        sut.fetchContent()
+
+        mockAPIService.fetchContent { (userWrapper, _) in
+            guard let userWrapper = userWrapper else {
+                return
+            }
+            responseTitle = userWrapper.title!
+            userContentList = userWrapper.rows!
+            expect.fulfill()
+        }
+        wait(for: [expect], timeout: 3.0)
+
         let indexPath = IndexPath(row: 1, section: 0)
         let testObjUserContent = userContentList[indexPath.row]
-        
-        let objUserContent = sut.contentList.value[indexPath.row]
-        
-        XCTAssertEqual(objUserContent.userContent.title, testObjUserContent.title)
-        
-    }
-}
 
-class MockApiService: ContentAPI {
-    
-    var contentList: [UserContent] = [UserContent]()
-    var successClosure: (([UserContent], String) -> Void)!
-    var failureClosure: ((UserContentError) -> Void)!
-    
-    func fetchContent(success: @escaping ([UserContent], String) -> Void, failure: @escaping (UserContentError) -> Void) {
-        contentList = MockApiService.makeMockContentList()
-        successClosure = success
-        failureClosure = failure
+        let objUserContent = sut.contentList.value[indexPath.row]
+
+        XCTAssertEqual(objUserContent.userContent.title, testObjUserContent.title)
+        XCTAssertEqual(sut.navTitle, responseTitle)
+
     }
-    
-    func fetchSuccess() {
-        successClosure(contentList, "Title")
-    }
-    
-    func fetchFail(error: UserContentError) {
-        failureClosure(error)
-    }
-    
-    static func makeMockContentList() -> [UserContent] {
-        return [
-            UserContent(title: "Canada", description: "Canada is very beautiful place", imageHref: ""),
-            UserContent(title: "India", description: "Inida is developing country", imageHref: ""),
-            UserContent(title: "No title", description: "No subtitle", imageHref: "")]
-    }
-    
 }

@@ -13,17 +13,17 @@ import UIKit
  */
 
 extension UIViewController {
-    
+
     var activityIndicatorTag: Int { return 999999 }
-    
+
     func startActivityIndicator(
         style: UIActivityIndicatorView.Style = .whiteLarge,
         location: CGPoint? = nil) {
-        
+
         let loc = location ?? view.center
-        
+
         DispatchQueue.main.async {
-            
+
             let activityIndicator = UIActivityIndicatorView(style: style)
             activityIndicator.color = UIColor.black
             activityIndicator.tag = self.activityIndicatorTag
@@ -33,18 +33,20 @@ extension UIViewController {
             self.view.addSubview(activityIndicator)
         }
     }
-    
+
     func stopActivityIndicator() {
         DispatchQueue.main.async {
-            if let activityIndicator = self.view.subviews.filter({ $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
+            if let activityIndicator = self.view.subviews.filter({
+                $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
             }
         }
     }
-    
+
     func isActivityIndicatorAnimating() -> Bool {
-        if let activityIndicator = view.subviews.filter({ $0.tag == activityIndicatorTag}).first as? UIActivityIndicatorView {
+        if let activityIndicator = view.subviews.filter({
+            $0.tag == activityIndicatorTag}).first as? UIActivityIndicatorView {
             return activityIndicator.isAnimating
         }
         return false

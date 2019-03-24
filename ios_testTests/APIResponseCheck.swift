@@ -14,7 +14,7 @@ import Alamofire
 class APIResponseCheck: XCTestCase {
 
     var sut: UserContentAPI?
-    
+
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
@@ -28,21 +28,22 @@ class APIResponseCheck: XCTestCase {
     }
 
     func testAPIRequest() {
-        
+
         let sut = self.sut
-        
+
         let expect = XCTestExpectation(description: "callback")
-        
-        sut?.fetchContent(success: { (content, _) in
+
+        sut?.fetchContent(completion: { (userWrapper, error) in
+            guard let userWrapper = userWrapper else {
+                XCTAssertNil(error, "Whoops, error \(error!.localizedDescription)")
+                expect.fulfill()
+                return
+            }
+            XCTAssertNotNil(userWrapper, "No response")
             expect.fulfill()
-            
-            XCTAssertNotNil(content, "No response")
-            
-        }, failure: { (error) in
-            XCTAssertNil(error, "Whoops, error \(error.rawValue)")
         })
-        
+
         wait(for: [expect], timeout: 3.1)
     }
-    
+
 }
