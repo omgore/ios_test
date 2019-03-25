@@ -28,7 +28,7 @@ class UserContentViewModel: NSObject {
     public func fetchContent() {
 
         guard AppManager.sharedInstance.isInternetAvailable() else {
-            self.showError.value = "Network not available"
+            self.showError.value = Constants.networkNotAvailable
             return
         }
 
@@ -42,7 +42,7 @@ class UserContentViewModel: NSObject {
             }
             self.navTitle = userWrapper.title!
             if userWrapper.rows!.isEmpty {
-                self.showError.value = "User Content List is empty"
+                self.showError.value = Constants.userListEmpty
                 self.showLoading.value = false
             } else {
                 self.contentList.value = userWrapper.rows!.map { CellViewModel.init(userContent: $0) }

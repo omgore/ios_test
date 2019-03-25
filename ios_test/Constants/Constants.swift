@@ -33,4 +33,14 @@ struct Constants {
     static let noTitle = "No Title"
     static let noSubtitle = "No Subtitle"
 
+    /**
+     For tag for Activity Indicator
+    */
+    static var activityIndicatorTag: Int { return 999999 }
+
+    /**
+     Constant Messages for errors
+     */
+    static let networkNotAvailable = "Network not available"
+    static let userListEmpty = "User Content List is empty"
 }

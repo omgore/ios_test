@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ContentAPI {
-    func fetchContent(completion:@escaping (UserContentWrapper?, Error?) -> Void)
+    func fetchContent(completion:@escaping (UserContentWrapper?, Error?) -> Void )
 }
 
 class UserContentAPI: ContentAPI {

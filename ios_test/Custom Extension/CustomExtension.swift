@@ -14,8 +14,6 @@ import UIKit
 
 extension UIViewController {
 
-    var activityIndicatorTag: Int { return 999999 }
-
     func startActivityIndicator(
         style: UIActivityIndicatorView.Style = .whiteLarge,
         location: CGPoint? = nil) {
@@ -26,7 +24,7 @@ extension UIViewController {
 
             let activityIndicator = UIActivityIndicatorView(style: style)
             activityIndicator.color = UIColor.black
-            activityIndicator.tag = self.activityIndicatorTag
+            activityIndicator.tag = Constants.activityIndicatorTag
             activityIndicator.center = loc
             activityIndicator.hidesWhenStopped = true
             activityIndicator.startAnimating()
@@ -37,7 +35,7 @@ extension UIViewController {
     func stopActivityIndicator() {
         DispatchQueue.main.async {
             if let activityIndicator = self.view.subviews.filter({
-                $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
+                $0.tag == Constants.activityIndicatorTag}).first as? UIActivityIndicatorView {
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
             }
@@ -46,7 +44,7 @@ extension UIViewController {
 
     func isActivityIndicatorAnimating() -> Bool {
         if let activityIndicator = view.subviews.filter({
-            $0.tag == activityIndicatorTag}).first as? UIActivityIndicatorView {
+            $0.tag == Constants.activityIndicatorTag}).first as? UIActivityIndicatorView {
             return activityIndicator.isAnimating
         }
         return false
